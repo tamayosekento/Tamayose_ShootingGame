@@ -22,6 +22,16 @@ bool SphereCollider::HitSphere(const SphereCollider* collider) const
 	float vectorY = fabsf(this->location.y - collider->GetLocation().y);
 
 	//ƒxƒNƒgƒ‹‚Ì‘å‚«‚³‚ðŒvŽZ
+	float vectorLength = (vectorX * vectorX) + (vectorY * vectorY);
+	vectorLength = sqrtf(vectorLength);
+
+	//Ž©•ª‚Æ‘ŠŽè‚Ì”¼Œa‚Ì‡Œv’l‚ðŒvŽZ
+	float sumRadius = radius + collider->GetRadius();
+
+	//“–‚½‚è”»’è‚ÌŒ‹‰Ê‚ðŠi”[
+	bool ret = (vectorLength < sumRadius);
+
+	return ret;
 }
 
 //’†SÀ•W‚ÌŽæ“¾
@@ -40,5 +50,5 @@ void SphereCollider:: SetLocation(T_Location location)
 //”¼Œa‚ÌŽæ“¾
 float SphereCollider::GetRadius() const
 {
-
+	return radius;
 }
