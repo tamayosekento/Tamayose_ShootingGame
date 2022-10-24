@@ -153,7 +153,9 @@
   <ItemGroup>
     <ClCompile Include="BulletsBase.cpp" />
     <ClCompile Include="CharaBase.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="GameMainScene.cpp" />
+    <ClCompile Include="KeyManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SceneManager.cpp" />
@@ -165,7 +167,9 @@
     <ClInclude Include="BulletsBase.h" />
     <ClInclude Include="CharaBase.h" />
     <ClInclude Include="common.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="GameMainScene.h" />
+    <ClInclude Include="KeyManager.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SphereCollider.h" />

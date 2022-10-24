@@ -1,6 +1,7 @@
 #include"DxLib.h"
 #include "Player.h"
 #include"StraightBullets.h"
+#include"KeyManager.h"
 
 Player::Player(T_Location location)
 	: CharaBase(location, 10.f, T_Location{2,2}),score(0),life(10)
@@ -28,7 +29,7 @@ void Player::Update()
 		bullets[bulletCount]->Update();
 	}
 
-	if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0)
+	if (KeyManager::OnMouseClicked(MOUSE_INPUT_LEFT))
 	{
 		if (bulletCount < 30 && bullets[bulletCount] == nullptr)
 		{
