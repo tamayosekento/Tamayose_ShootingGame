@@ -5,9 +5,10 @@
 class CharaBase : public SphereCollider
 {
 private:
-    T_Location speed;
+    
 
 protected:
+    T_Location speed;
     BulletsBase** bullets;
     int* image;
 

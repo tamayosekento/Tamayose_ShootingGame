@@ -16,7 +16,26 @@ Player::Player(T_Location location)
 void Player::Update()
 {
 	T_Location newLocation = GetLocation();
-	newLocation.x += 1;
+	if (KeyManager::OnKeyPressed(KEY_INPUT_W))
+	{
+		newLocation.y -= speed.y;
+	}
+	
+	if (KeyManager::OnKeyPressed(KEY_INPUT_A))
+	{
+		newLocation.x -= speed.x;
+	}
+
+	if (KeyManager::OnKeyPressed(KEY_INPUT_S))
+	{
+		newLocation.y += speed.y;
+	}
+
+	if (KeyManager::OnKeyPressed(KEY_INPUT_D))
+	{
+		newLocation.x += speed.x;
+	}
+
 	SetLocation(newLocation);
 
 	int bulletCount;
@@ -27,6 +46,20 @@ void Player::Update()
 			break;
 		}
 		bullets[bulletCount]->Update();
+
+		//‰æ–ÊŠO‚És‚Á‚½‚ç’e‚ðÁ‚·
+		if (bullets[bulletCount]->isScreenOut())
+		{
+			delete bullets[bulletCount];
+			bullets[bulletCount] = nullptr;
+
+			//”z—ñ‚ð‘O‚É‹l‚ß‚é
+			for (int i = 0; i < 30 - bulletCount; i++)
+			{
+				bullets[bulletCount] = bullets[bulletCount + 1];
+			}
+			bullets[bulletCount] = nullptr;
+		}
 	}
 
 	if (KeyManager::OnMouseClicked(MOUSE_INPUT_LEFT))
