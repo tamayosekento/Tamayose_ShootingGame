@@ -19,9 +19,16 @@ void Enemy::Draw()
 	DrawCircle(GetLocation().x, GetLocation().y, GetRadius(), GetColor(255, 0, 255));
 }
 
-void Enemy::Hit()
+void Enemy::Hit(int damage)
 {
-
+	if (0 < damage)
+	{
+		hp -= damage;
+		if (hp < 0)
+		{
+			hp = 0;
+		}
+	}
 }
 
 bool Enemy::HpCheck()
