@@ -16,5 +16,6 @@ public:
 	void Hit(int damage) override;
 	bool LifeCheck();
 	int GetScore();
+	void AddScore(int score);
 };
 

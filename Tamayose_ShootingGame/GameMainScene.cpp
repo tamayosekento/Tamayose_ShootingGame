@@ -57,8 +57,26 @@ void GameMainScene::Update()
 				//エネミーのHPが0以下だったらエネミーを削除する
 				if (enemy[enemyCount]->HpCheck())
 				{
+					//スコアの加算
+					player->AddScore(enemy[enemyCount]->GetPoint());
+
 					//エネミーの削除
-					
+					delete enemy[enemyCount];
+					enemy[enemyCount] = nullptr;
+
+					//配列を前に詰める
+					for (int i = enemyCount + 1; i < 30; i++)
+					{
+						if (enemy[i] == nullptr)
+						{
+							break;
+						}
+						enemy[i - 1] = enemy[i];
+						enemy[i] = nullptr;
+					}
+
+					enemyCount--;
+					break;
 				}
 			}
 		}

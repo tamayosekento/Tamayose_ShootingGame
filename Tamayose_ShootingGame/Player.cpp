@@ -93,3 +93,12 @@ int Player::GetScore()
 {
 	return score;
 }
+
+void Player::AddScore(int score)
+{
+	if (0 <= score)
+	{
+		this->score += score;
+	}
+	
+}
