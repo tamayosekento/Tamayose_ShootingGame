@@ -1,4 +1,5 @@
 #include "GameMainScene.h"
+#include"Recovery.h"
 
 GameMainScene::GameMainScene()
 {
@@ -11,6 +12,12 @@ GameMainScene::GameMainScene()
 		enemy[i] = nullptr;
 	}
 	enemy[0] = new Enemy(T_Location{ 200, 0 });
+
+	items = new ItemBase * [10];
+	for (int i = 0; i < 10; i++)
+	{
+		items[i] = nullptr;
+	}
 }
 
 //描画以外の更新を実装する
@@ -26,6 +33,15 @@ void GameMainScene::Update()
 			break;
 		}
 		enemy[enemyCount]->Update();
+	}
+
+	for (int i = 0; i < 10; i++)
+	{
+		if (items[i] == nullptr)
+		{
+			break;
+		}
+		items[i]->Update();
 	}
 
 	BulletsBase** bullet = player->GetBullets();
@@ -57,6 +73,16 @@ void GameMainScene::Update()
 				//エネミーのHPが0以下だったらエネミーを削除する
 				if (enemy[enemyCount]->HpCheck())
 				{
+					for (int i = 0; i < 10; i++)
+					{
+						if (items[i] == nullptr)
+						{
+							items[i] = new Recovery(enemy[enemyCount]->GetLocation());
+							break;
+						}
+
+					}
+
 					//スコアの加算
 					player->AddScore(enemy[enemyCount]->GetPoint());
 
@@ -81,6 +107,32 @@ void GameMainScene::Update()
 			}
 		}
 	}
+
+	for (int itemCount = 0; itemCount < 10; itemCount++)
+	{
+		if (items[itemCount] == nullptr)
+		{
+			break;
+		}
+		if (items[itemCount]->HitSphere(player) == true)
+		{
+			delete items[itemCount];
+			items[itemCount] = nullptr;
+
+			//配列を前に詰める
+			for (int i = itemCount + 1; i < 30; i++)
+			{
+				if (items[itemCount] == nullptr)
+				{
+					break;
+				}
+				items[itemCount - 1] = items[itemCount];
+				items[itemCount] = nullptr;
+			}
+			itemCount--;
+		}
+	}
+
 }
 
 //描画に関することを実装する
@@ -95,6 +147,15 @@ void GameMainScene::Draw() const
 			break;
 		}
 		enemy[enemyCount]->Draw();
+	}
+
+	for (int i = 0; i < 10; i++)
+	{
+		if (items[i] == nullptr)
+		{
+			break;
+		}
+		items[i]->Draw();
 	}
 }
 

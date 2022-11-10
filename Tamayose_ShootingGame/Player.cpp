@@ -66,6 +66,13 @@ void Player::Update()
 
 void Player::Draw()
 {
+#define _DEBUG_MODE_
+
+#ifdef _DEBUG_MODE_
+	DrawFormatString(10, 10, GetColor(255, 255, 255), "life = %d",life);
+#endif
+
+
 	DrawCircle(GetLocation().x, GetLocation().y, GetRadius(), GetColor(255, 0, 0));
 
 	for (int bulletCount = 0; bulletCount < 30; bulletCount++)

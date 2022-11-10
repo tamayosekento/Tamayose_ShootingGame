@@ -8,7 +8,10 @@ private:
 	E_ITEM_TYPE type;
 
 protected:
-	T_Location spped;
+	T_Location speed;
+
+public:
+	ItemBase(T_Location location, float radius, E_ITEM_TYPE type, T_Location speed);
 
 public:
 	virtual void Update() = 0;

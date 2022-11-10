@@ -10,7 +10,7 @@ Enemy::Enemy(T_Location location)
 void Enemy::Update()
 {
 	T_Location newLocation = GetLocation();
-	newLocation.y += 0.5;
+	newLocation.y += speed.y;
 	SetLocation(newLocation);
 }
 
