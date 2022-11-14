@@ -116,18 +116,21 @@ void GameMainScene::Update()
 		}
 		if (items[itemCount]->HitSphere(player) == true)
 		{
+			//‰ñ•œˆ—
+			player->Hit(items[itemCount]);
+
 			delete items[itemCount];
 			items[itemCount] = nullptr;
 
 			//”z—ñ‚ð‘O‚É‹l‚ß‚é
 			for (int i = itemCount + 1; i < 30; i++)
 			{
-				if (items[itemCount] == nullptr)
+				if (items[i] == nullptr)
 				{
 					break;
 				}
-				items[itemCount - 1] = items[itemCount];
-				items[itemCount] = nullptr;
+				items[i - 1] = items[i];
+				items[i] = nullptr;
 			}
 			itemCount--;
 		}
