@@ -7,7 +7,7 @@
 Player::Player(T_Location location)
 	: CharaBase(location, 10.f, T_Location{2,2}),score(0),life(10)
 {
-	bullets = new BulletsBase*[30];
+	bullets = new BulletsBase * [30];
 	for (int i = 0; i < 30; i++)
 	{
 		bullets[i] = nullptr;
@@ -60,7 +60,7 @@ void Player::Update()
 	{
 		if (bulletCount < 30 && bullets[bulletCount] == nullptr)
 		{
-			bullets[bulletCount] = new StraightBullets(GetLocation());
+			bullets[bulletCount] = new StraightBullets((GetLocation()), T_Location{ 0,-2 });
 		}
 	}
 }
@@ -71,6 +71,7 @@ void Player::Draw()
 
 #ifdef _DEBUG_MODE_
 	DrawFormatString(10, 10, GetColor(255, 255, 255), "life = %d",life);
+	DrawFormatString(10, 30, GetColor(255, 255, 255), "score = %d",score);
 #endif
 
 
@@ -88,7 +89,15 @@ void Player::Draw()
 
 void Player::Hit(int damage)
 {
+	if (0 <= damage)
+	{
+		life -= damage;
 
+		if (life <= 0)
+		{
+			life = 0;
+		}
+	}
 }
 
 void Player::Hit(ItemBase* item)

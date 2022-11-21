@@ -3,6 +3,9 @@
 #include"GameMainScene.h"
 #include"KeyManager.h"
 
+#define SCREEN_WIDTH 1280
+#define SCREEN_HEIGHT 720
+
 /***********************************************
  * プログラムの開始
  ***********************************************/
@@ -13,6 +16,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	SetMainWindowText("ブロック崩し");
 
 	ChangeWindowMode(TRUE);		// ウィンドウモードで起動
+
+	SetWindowSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+	SetGraphMode(SCREEN_WIDTH, SCREEN_HEIGHT, 16);
 
 	if (DxLib_Init() == -1) return -1;	// DXライブラリの初期化処理
 

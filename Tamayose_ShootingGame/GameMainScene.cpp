@@ -108,6 +108,34 @@ void GameMainScene::Update()
 		}
 	}
 
+	for (enemyCount = 0; enemyCount < 10; enemyCount++)
+	{
+		if (enemy[enemyCount] == nullptr)
+		{
+			break;
+		}
+		bullet = enemy[enemyCount]->GetBullets();
+
+		for (int i = 0; i < 30; i++)
+		{
+			if (bullet[i] == nullptr)
+			{
+				break;
+			}
+
+			if (player->HitSphere(bullet[i]))
+			{
+				//プレイヤーにダメージを与える
+				player->Hit(bullet[i]->GetDamage());
+
+				//弾を削除する
+				enemy[enemyCount]->DeleteBullet(i);
+				i--;
+			}
+
+		}
+	}
+
 	for (int itemCount = 0; itemCount < 10; itemCount++)
 	{
 		if (items[itemCount] == nullptr)
