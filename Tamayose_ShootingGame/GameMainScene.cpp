@@ -1,6 +1,9 @@
 #include "GameMainScene.h"
 #include"Recovery.h"
 
+#define SCREEN_WIDTH 1280
+#define SCREEN_HEIGHT 720
+
 GameMainScene::GameMainScene()
 {
 	T_Location location = T_Location{ 20,100 };
@@ -11,7 +14,8 @@ GameMainScene::GameMainScene()
 	{
 		enemy[i] = nullptr;
 	}
-	enemy[0] = new Enemy(T_Location{ 200, 0 });
+	//enemy[0] = new Enemy(T_Location{ 200, 0 });
+	enemy[0] = new Enemy(T_Location{ SCREEN_WIDTH / 2,SCREEN_HEIGHT / 2 });
 
 	items = new ItemBase * [10];
 	for (int i = 0; i < 10; i++)

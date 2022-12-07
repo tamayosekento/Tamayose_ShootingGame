@@ -1,9 +1,12 @@
 #include"DxLib.h"
 #include "Enemy.h"
 #include"StraightBullets.h"
+#include"CircleBullet.h"
+
+//#define _ENEMY_BULLET_ALL_ 100
 
 Enemy::Enemy(T_Location location)
-	:CharaBase(location, 20.f, T_Location{ 0,0.5 }), hp(10), point(10)
+	:CharaBase(location, 20.f, T_Location{ 0,0.5 }), hp(10), point(10),shotNum(0)
 {
 	bullets = new BulletsBase * [30];
 	for (int i = 0; i < 30; i++)
@@ -14,9 +17,9 @@ Enemy::Enemy(T_Location location)
 
 void Enemy::Update()
 {
-	T_Location newLocation = GetLocation();
+	/*T_Location newLocation = GetLocation();
 	newLocation.y += speed.y;
-	SetLocation(newLocation);
+	SetLocation(newLocation);*/
 
 	int bulletCount;
 	for (bulletCount = 0; bulletCount < 30; bulletCount++)
@@ -37,7 +40,11 @@ void Enemy::Update()
 
 	if (bulletCount < 30 && bullets[bulletCount] == nullptr)
 	{
-		bullets[bulletCount] = new StraightBullets(GetLocation(), T_Location{ 0,2 });
+		//’e–‹‚ðì‚ë‚¤
+		bullets[bulletCount] =
+			new CircleBullet(GetLocation(), 2.f, (20 * shotNum));
+		shotNum++;
+		//bullets[bulletCount] = new StraightBullets(GetLocation(), T_Location{ 0,2 });
 	}
 }
 
