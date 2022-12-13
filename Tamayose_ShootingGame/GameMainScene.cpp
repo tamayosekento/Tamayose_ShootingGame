@@ -120,7 +120,7 @@ void GameMainScene::Update()
 		}
 		bullet = enemy[enemyCount]->GetBullets();
 
-		for (int i = 0; i < 30; i++)
+		for (int i = 0; i < /*30*/300; i++)
 		{
 			if (bullet[i] == nullptr)
 			{

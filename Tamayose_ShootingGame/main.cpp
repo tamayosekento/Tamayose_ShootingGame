@@ -12,8 +12,7 @@
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	LPSTR lpCmdLine, int nCmdShow) {
 
-	// タイトルを test に変更
-	SetMainWindowText("ブロック崩し");
+	SetMainWindowText("シューティングゲーム");
 
 	ChangeWindowMode(TRUE);		// ウィンドウモードで起動
 

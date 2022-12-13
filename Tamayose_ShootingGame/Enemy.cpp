@@ -5,11 +5,19 @@
 
 //#define _ENEMY_BULLET_ALL_ 100
 
-Enemy::Enemy(T_Location location)
-	:CharaBase(location, 20.f, T_Location{ 0,0.5 }), hp(10), point(10),shotNum(0)
+T_Location locations[4] = 
 {
-	bullets = new BulletsBase * [30];
-	for (int i = 0; i < 30; i++)
+	{0,0},
+	{0,0},
+	{0,0},
+	{0,0},
+};
+
+Enemy::Enemy(T_Location location)
+	:CharaBase(location, 20.f, T_Location{ 0,0 }), hp(10), point(10), shotNum(0)
+{
+	bullets = new BulletsBase * [/*30*/300];
+	for (int i = 0; i < /*30*/300; i++)
 	{
 		bullets[i] = nullptr;
 	}
@@ -22,7 +30,7 @@ void Enemy::Update()
 	SetLocation(newLocation);*/
 
 	int bulletCount;
-	for (bulletCount = 0; bulletCount < 30; bulletCount++)
+	for (bulletCount = 0; bulletCount < /*30*/300; bulletCount++)
 	{
 		if (bullets[bulletCount] == nullptr)
 		{
@@ -38,11 +46,11 @@ void Enemy::Update()
 		}
 	}
 
-	if (bulletCount < 30 && bullets[bulletCount] == nullptr)
+	if (bulletCount < 300/*30*/ && bullets[bulletCount] == nullptr)
 	{
 		//’e–‹‚ðì‚ë‚¤
 		bullets[bulletCount] =
-			new CircleBullet(GetLocation(), 2.f, (20 * shotNum));
+			new CircleBullet(GetLocation(), 2.f, (23 * shotNum));
 		shotNum++;
 		//bullets[bulletCount] = new StraightBullets(GetLocation(), T_Location{ 0,2 });
 	}
@@ -52,7 +60,7 @@ void Enemy::Draw()
 {
 	DrawCircle(GetLocation().x, GetLocation().y, GetRadius(), GetColor(255, 0, 255));
 
-	for (int bulletCount = 0; bulletCount < 30; bulletCount++)
+	for (int bulletCount = 0; bulletCount < /*30*/300; bulletCount++)
 	{
 		if (bullets[bulletCount] == nullptr)
 		{
