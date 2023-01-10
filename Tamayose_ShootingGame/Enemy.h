@@ -19,6 +19,6 @@ public:
 	virtual void Hit(int damage) override;
 	bool HpCheck();
 	int GetPoint();
-
+	void Move();
 };
 
