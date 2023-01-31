@@ -40,9 +40,42 @@ int next[3] =
 int current = 0;
 int waitTime = 0;
 
+void inputCSV()
+{
+	FILE* fp;			//FILE型構造体
+	errno_t error;		//fopen_sのエラー確認
+
+	error = fopen_s(&fp, "data/Shooting.csv", "r");
+	if (error != 0)
+	{
+		//エラー発生
+		return;
+	}
+	else
+	{
+		//ファイルを開いた
+		char line[100];
+		for (int i = 0; fgets(line, 100, fp) != NULL; i++)
+		//while(fgets(line, 100, fp) != NULL)
+		{
+			sscanf_s(line, "%d, %f, %f, %d, %d, %d",
+					&moveInfo[i].pattern,
+					&moveInfo[i].destination.x,
+					&moveInfo[i].destination.y,
+					&moveInfo[i].nextArrayNum,
+					&moveInfo[i].waitFlameTime,
+					&moveInfo[i].attackType);
+		}
+		return;
+	}
+
+	fclose(fp);			//ファイルを閉じる
+}
+
 Enemy::Enemy(T_Location location)
 	:CharaBase(location, 20.f, T_Location{ 1.5,1.5 }), hp(10), point(10), shotNum(0)
 {
+	inputCSV();
 	bullets = new BulletsBase * [/*30*/300];
 	for (int i = 0; i < /*30*/300; i++)
 	{
