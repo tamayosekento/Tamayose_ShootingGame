@@ -1,5 +1,8 @@
 #include "GameMainScene.h"
 #include"Recovery.h"
+#include"Enemy.h"
+#include "GameOverScene.h"
+#include "GameClearScene.h"
 
 #define SCREEN_WIDTH 1280
 #define SCREEN_HEIGHT 720
@@ -24,12 +27,14 @@ GameMainScene::GameMainScene()
 	}
 }
 
+int enemyCount;
+
 //描画以外の更新を実装する
 void GameMainScene::Update()
 {
 	player->Update();
 	
-	int enemyCount;
+	
 	for (enemyCount = 0; enemyCount < 10; enemyCount++)
 	{
 		if (enemy[enemyCount] == nullptr)
@@ -197,5 +202,10 @@ void GameMainScene::Draw() const
 //シーンの変更処理
 AbstractScene* GameMainScene::ChangeScene()
 {
+	if (enemy[enemyCount]==nullptr)
+	{
+		return dynamic_cast<AbstractScene*>(new (GameClearScene));
+	}
+
 	return this;
 }

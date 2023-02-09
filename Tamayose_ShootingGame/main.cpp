@@ -2,6 +2,7 @@
 #include"SceneManager.h"
 #include"GameMainScene.h"
 #include"KeyManager.h"
+#include"TitleScene.h"
 
 #define SCREEN_WIDTH 1280
 #define SCREEN_HEIGHT 720
@@ -28,7 +29,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	/*SceneManager sceneMng(new GameTitleScene());*/
 
 	//シーンマネージャーオブジェクトの作成
-	SceneManager sceneMng(dynamic_cast<AbstractScene*>(new GameMainScene()));
+	SceneManager sceneMng(dynamic_cast<AbstractScene*>(new TitleScene()));
 
 	// ゲームループ
 	while (ProcessMessage() == 0) 
