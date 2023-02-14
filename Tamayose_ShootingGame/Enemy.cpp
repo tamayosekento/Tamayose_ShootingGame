@@ -130,7 +130,11 @@ void Enemy::Update()
 
 void Enemy::Draw()
 {
-	DrawCircle(GetLocation().x, GetLocation().y, GetRadius(), GetColor(255, 0, 255));
+	//DrawCircle(GetLocation().x, GetLocation().y, GetRadius(), GetColor(255, 0, 255));
+
+	int Enemy = LoadGraph("images/Enemy.png");
+
+	DrawRotaGraph(GetLocation().x,GetLocation().y,1,0,Enemy);
 
 	for (int bulletCount = 0; bulletCount < /*30*/300; bulletCount++)
 	{

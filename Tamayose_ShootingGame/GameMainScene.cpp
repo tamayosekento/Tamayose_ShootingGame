@@ -7,6 +7,9 @@
 #define SCREEN_WIDTH 1280
 #define SCREEN_HEIGHT 720
 
+int enemyCount;
+bool clearCheck;
+
 GameMainScene::GameMainScene()
 {
 	T_Location location = T_Location{ 20,100 };
@@ -25,9 +28,8 @@ GameMainScene::GameMainScene()
 	{
 		items[i] = nullptr;
 	}
+	clearCheck = false;
 }
-
-int enemyCount;
 
 //描画以外の更新を実装する
 void GameMainScene::Update()
@@ -82,6 +84,8 @@ void GameMainScene::Update()
 				//エネミーのHPが0以下だったらエネミーを削除する
 				if (enemy[enemyCount]->HpCheck())
 				{
+					clearCheck = true;
+
 					for (int i = 0; i < 10; i++)
 					{
 						if (items[i] == nullptr)
@@ -202,9 +206,13 @@ void GameMainScene::Draw() const
 //シーンの変更処理
 AbstractScene* GameMainScene::ChangeScene()
 {
-	if (enemy[enemyCount]==nullptr)
+	if (clearCheck)
 	{
 		return dynamic_cast<AbstractScene*>(new (GameClearScene));
+	}
+	else if (player->LifeCheck())
+	{
+		return dynamic_cast<AbstractScene*>(new (GameOverScene));
 	}
 
 	return this;
