@@ -5,8 +5,10 @@
 #include"Recovery.h"
 
 Player::Player(T_Location location)
-	: CharaBase(location, 10.f, T_Location{2,2}),score(0),life(10)
+	: CharaBase(location, 30.f, T_Location{3,3}),score(0),life(10)
 {
+	player = LoadGraph("images/Player.png");
+
 	bullets = new BulletsBase * [30];
 	for (int i = 0; i < 30; i++)
 	{
@@ -60,7 +62,7 @@ void Player::Update()
 	{
 		if (bulletCount < 30 && bullets[bulletCount] == nullptr)
 		{
-			bullets[bulletCount] = new StraightBullets((GetLocation()), T_Location{ 0,-2 });
+			bullets[bulletCount] = new StraightBullets((GetLocation()), T_Location{ 0,-5 });
 		}
 	}
 }
@@ -75,7 +77,9 @@ void Player::Draw()
 #endif
 
 
-	DrawCircle(GetLocation().x, GetLocation().y, GetRadius(), GetColor(255, 0, 0));
+	//DrawCircle(GetLocation().x, GetLocation().y, GetRadius(), GetColor(255, 0, 0));
+
+	DrawRotaGraph(GetLocation().x, GetLocation().y, 0.15, 0, player, TRUE);
 
 	for (int bulletCount = 0; bulletCount < 30; bulletCount++)
 	{

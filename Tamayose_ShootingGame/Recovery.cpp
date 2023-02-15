@@ -2,9 +2,9 @@
 #include"DxLib.h"
 
 Recovery::Recovery(T_Location location)
-	:ItemBase(location, 5.f, E_ITEM_TYPE::Heal, T_Location{ 0,0.5 }), volume(2)
+	:ItemBase(location, 30.f, E_ITEM_TYPE::Heal, T_Location{ 0,0.5 }), volume(2)
 {
-
+	item = LoadGraph("images/Item.png");
 }
 
 void Recovery::Update()
@@ -16,7 +16,7 @@ void Recovery::Update()
 
 void Recovery::Draw()
 {
-	DrawCircle(GetLocation().x, GetLocation().y, GetRadius(), GetColor(255, 255, 255));
+	DrawRotaGraph(GetLocation().x, GetLocation().y, 0.15, 0, item, TRUE);
 }
 
 int Recovery::GetVolume()

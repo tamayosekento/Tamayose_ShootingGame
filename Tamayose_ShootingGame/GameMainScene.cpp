@@ -23,6 +23,14 @@ GameMainScene::GameMainScene()
 	//enemy[0] = new Enemy(T_Location{ 200, 0 });
 	enemy[0] = new Enemy(T_Location{ SCREEN_WIDTH / 2,SCREEN_HEIGHT / 2 });
 
+	enemy2 = new Enemy2 * [10];
+	for (int i = 0; i < 10; i++)
+	{
+		enemy2[i] = nullptr;
+	}
+	//enemy[0] = new Enemy(T_Location{ 200, 0 });
+	enemy2[0] = new Enemy2(T_Location{ SCREEN_WIDTH / 2,SCREEN_HEIGHT / 2 });
+
 	items = new ItemBase * [10];
 	for (int i = 0; i < 10; i++)
 	{
@@ -208,7 +216,7 @@ AbstractScene* GameMainScene::ChangeScene()
 {
 	if (clearCheck)
 	{
-		return dynamic_cast<AbstractScene*>(new (GameClearScene));
+		//return dynamic_cast<AbstractScene*>(new (GameClearScene));
 	}
 	else if (player->LifeCheck())
 	{

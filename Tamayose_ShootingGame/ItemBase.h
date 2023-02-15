@@ -14,8 +14,8 @@ public:
 	ItemBase(T_Location location, float radius, E_ITEM_TYPE type, T_Location speed);
 
 public:
-	virtual void Update() = 0;
-	virtual void Draw() = 0;
+	virtual void Update();
+	virtual void Draw();
 	E_ITEM_TYPE GetType();
 };
 

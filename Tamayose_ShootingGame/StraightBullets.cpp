@@ -4,7 +4,7 @@
 StraightBullets::StraightBullets(T_Location location, T_Location speed)
 	:BulletsBase(location, 5.f, 1, speed)
 {
-
+	playerBullet = LoadGraph("images/Bullet.png");
 }
 
 void StraightBullets::Update()
@@ -16,7 +16,7 @@ void StraightBullets::Update()
 
 void StraightBullets::Draw()
 {
-	DrawCircle(GetLocation().x, GetLocation().y, GetRadius(), GetColor(0, 255, 0));
+	DrawRotaGraph(GetLocation().x, GetLocation().y, 0.03, 0, playerBullet, TRUE);
 }
 
 bool StraightBullets::isScreenOut()

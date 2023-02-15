@@ -1,7 +1,7 @@
 #include "SphereCollider.h"
 #include"math.h"
 
-//コンストラクタd
+//コンストラクタ
 SphereCollider::SphereCollider (T_Location location, float radius)
 {
 	this->location.x = location.x;

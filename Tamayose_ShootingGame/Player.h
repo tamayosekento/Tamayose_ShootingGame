@@ -6,6 +6,7 @@ class Player : public CharaBase
 private:
 	int score;
 	int life;
+	int player;
 
 public:
 	Player(T_Location location);

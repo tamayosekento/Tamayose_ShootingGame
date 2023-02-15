@@ -5,7 +5,7 @@ class Recovery : public ItemBase
 {
 private:
 	int volume;
-
+	int item;
 public:
 	Recovery(T_Location location);
 

@@ -4,6 +4,8 @@
 class StraightBullets : public BulletsBase
 {
 public:
+	int playerBullet;
+
 	StraightBullets(T_Location location, T_Location speed);
 
 public:
