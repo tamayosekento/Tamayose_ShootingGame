@@ -29,7 +29,7 @@ void CircleBullet::Update()
 
 void CircleBullet::Draw()
 {
-	DrawRotaGraph(GetLocation().x, GetLocation().y, 0.03, 0, enemyBullet, TRUE);
+	DrawRotaGraph(GetLocation().x, GetLocation().y, 1, 0, enemyBullet, TRUE);
 }
 
 bool CircleBullet::isScreenOut()

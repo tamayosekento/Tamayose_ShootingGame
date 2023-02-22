@@ -5,7 +5,7 @@
 #include"Recovery.h"
 
 Player::Player(T_Location location)
-	: CharaBase(location, 30.f, T_Location{3,3}),score(0),life(10)
+	: CharaBase(location, 30.f, T_Location{3,3}),score(0),life(50)
 {
 	player = LoadGraph("images/Player.png");
 
@@ -79,7 +79,7 @@ void Player::Draw()
 
 	//DrawCircle(GetLocation().x, GetLocation().y, GetRadius(), GetColor(255, 0, 0));
 
-	DrawRotaGraph(GetLocation().x, GetLocation().y, 0.15, 0, player, TRUE);
+	DrawRotaGraph(GetLocation().x, GetLocation().y, 1, 0, player, TRUE);
 
 	for (int bulletCount = 0; bulletCount < 30; bulletCount++)
 	{

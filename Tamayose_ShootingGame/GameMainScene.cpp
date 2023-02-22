@@ -20,16 +20,9 @@ GameMainScene::GameMainScene()
 	{
 		enemy[i] = nullptr;
 	}
-	//enemy[0] = new Enemy(T_Location{ 200, 0 });
-	enemy[0] = new Enemy(T_Location{ SCREEN_WIDTH / 2,SCREEN_HEIGHT / 2 });
 
-	enemy2 = new Enemy2 * [10];
-	for (int i = 0; i < 10; i++)
-	{
-		enemy2[i] = nullptr;
-	}
-	//enemy[0] = new Enemy(T_Location{ 200, 0 });
-	enemy2[0] = new Enemy2(T_Location{ SCREEN_WIDTH / 2,SCREEN_HEIGHT / 2 });
+	enemy[0] = new Enemy(T_Location{ 640,5 },"data/Shooting.csv");
+	enemy[1] = new Enemy(T_Location{ 0,5 }, "data/Shooting.csv");
 
 	items = new ItemBase * [10];
 	for (int i = 0; i < 10; i++)
@@ -51,6 +44,7 @@ void GameMainScene::Update()
 		{
 			break;
 		}
+
 		enemy[enemyCount]->Update();
 	}
 
@@ -135,9 +129,10 @@ void GameMainScene::Update()
 		{
 			break;
 		}
+
 		bullet = enemy[enemyCount]->GetBullets();
 
-		for (int i = 0; i < /*30*/200; i++)
+		for (int i = 0; i < /*30*/300; i++)
 		{
 			if (bullet[i] == nullptr)
 			{
@@ -198,6 +193,7 @@ void GameMainScene::Draw() const
 		{
 			break;
 		}
+
 		enemy[enemyCount]->Draw();
 	}
 

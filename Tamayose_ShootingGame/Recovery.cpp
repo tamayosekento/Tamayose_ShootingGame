@@ -16,7 +16,7 @@ void Recovery::Update()
 
 void Recovery::Draw()
 {
-	DrawRotaGraph(GetLocation().x, GetLocation().y, 0.15, 0, item, TRUE);
+	DrawRotaGraph(GetLocation().x, GetLocation().y, 1, 0, item, TRUE);
 }
 
 int Recovery::GetVolume()

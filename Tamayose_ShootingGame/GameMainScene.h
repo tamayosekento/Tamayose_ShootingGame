@@ -3,14 +3,12 @@
 #include"Player.h"
 #include"Enemy.h"
 #include"ItemBase.h"
-#include "Enemy2.h"
 
 class GameMainScene : public AbstractScene
 {
 private:
 	Player* player;
 	Enemy** enemy;
-	Enemy2** enemy2;
 	ItemBase** items;
 
 public:

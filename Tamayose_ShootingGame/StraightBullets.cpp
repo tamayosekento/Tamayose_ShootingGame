@@ -16,7 +16,7 @@ void StraightBullets::Update()
 
 void StraightBullets::Draw()
 {
-	DrawRotaGraph(GetLocation().x, GetLocation().y, 0.03, 0, playerBullet, TRUE);
+	DrawRotaGraph(GetLocation().x, GetLocation().y, 1, 0, playerBullet, TRUE);
 }
 
 bool StraightBullets::isScreenOut()
