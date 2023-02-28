@@ -11,6 +11,7 @@ private:
 	Enemy** enemy;
 	ItemBase** items;
 
+	int stageCount = 1;
 public:
 	GameMainScene();
 

@@ -52,7 +52,7 @@ void Enemy::inputCSV(const char* pass)
 }
 
 Enemy::Enemy(T_Location location, const char* pass)
-	:CharaBase(location, 60.f, T_Location{ 1.5,1.5 }), hp(10), point(10), shotNum(0)
+	:CharaBase(location, 60.f, T_Location{ 3,3 }), hp(10), point(10), shotNum(0)
 {
 	enemy = LoadGraph("images/Enemy.png");
 

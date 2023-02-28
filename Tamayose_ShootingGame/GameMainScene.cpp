@@ -3,12 +3,13 @@
 #include"Enemy.h"
 #include "GameOverScene.h"
 #include "GameClearScene.h"
+#include"KeyManager.h"
+#include"DxLib.h"
 
 #define SCREEN_WIDTH 1280
 #define SCREEN_HEIGHT 720
 
 int enemyCount;
-bool clearCheck;
 
 GameMainScene::GameMainScene()
 {
@@ -21,15 +22,13 @@ GameMainScene::GameMainScene()
 		enemy[i] = nullptr;
 	}
 
-	enemy[0] = new Enemy(T_Location{ 640,5 },"data/Shooting.csv");
-	enemy[1] = new Enemy(T_Location{ 0,5 }, "data/Shooting.csv");
+	enemy[0] = new Enemy(T_Location{ 640,0 },"data/Shooting.csv");
 
 	items = new ItemBase * [10];
 	for (int i = 0; i < 10; i++)
 	{
 		items[i] = nullptr;
 	}
-	clearCheck = false;
 }
 
 //描画以外の更新を実装する
@@ -86,8 +85,6 @@ void GameMainScene::Update()
 				//エネミーのHPが0以下だったらエネミーを削除する
 				if (enemy[enemyCount]->HpCheck())
 				{
-					clearCheck = true;
-
 					for (int i = 0; i < 10; i++)
 					{
 						if (items[i] == nullptr)
@@ -205,16 +202,41 @@ void GameMainScene::Draw() const
 		}
 		items[i]->Draw();
 	}
+
+	if (enemy[0] == nullptr)
+	{
+		DrawString(640, 320, "SHIFTを押して次のステージへ", 0xffffff);
+	}
 }
 
 //シーンの変更処理
 AbstractScene* GameMainScene::ChangeScene()
 {
-	if (clearCheck)
+	if (enemy[0] == nullptr)
 	{
-		//return dynamic_cast<AbstractScene*>(new (GameClearScene));
+		if (KeyManager::OnKeyClicked(KEY_INPUT_LSHIFT))
+		{
+			if (stageCount == 1)
+			{
+				for (int i = 0; i < 10; i++)
+				{
+					enemy[i] = nullptr;
+				}
+
+				enemy[0] = new Enemy(T_Location{ 640,0 }, "data/Shooting.csv");
+				enemy[1] = new Enemy(T_Location{ 640,150 }, "data/Shooting.csv");
+
+				stageCount++;
+			}
+			else
+			{
+				return dynamic_cast<AbstractScene*>(new (GameClearScene));
+			}
+		}
 	}
-	else if (player->LifeCheck())
+
+
+	if (player->LifeCheck())
 	{
 		return dynamic_cast<AbstractScene*>(new (GameOverScene));
 	}
